@@ -60,8 +60,8 @@ df <- map(bdgd, \(f) {ano <- stringr::str_extract(f, "20[0-9]{2}")
              municipio     = mun,
              ano,
              camada,
-             starts_with("ene")) %>% 
-      left_join(df_sha)
+             starts_with("ene")) 
+
 
 
         
