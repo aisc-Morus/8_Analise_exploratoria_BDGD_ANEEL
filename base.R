@@ -159,16 +159,23 @@ df_largo <- df %>% pivot_wider(id_cols     = c(distribuidora, id, shape, livre, 
 df %>% group_by(gru_tar, referencia) %>% 
        summarise(mwh = (sum(kwh)/1000)) %>% 
        ggplot(., aes(x = referencia, y = mwh, colour = gru_tar))+
-        geom_line() +
-        geom_point() +
+        geom_line(size = 1) +
+        geom_point(size = 2) +
+       labs(title = "Evolução mensal do consumo por grupo tarifário",
+            x = "Mês",
+            y = "Consumo total (MWh)",
+            color = "Grupo Tarifário") +
         theme_minimal()
-  
 
-
-
-
-
-
-                                      
-
+#5.2 Número de consumidores por grupo tarifário ----  
+df %>% group_by(gru_tar, referencia) %>% 
+       summarise(n_consumidores = n_distinct(id)) %>% 
+       ggplot(., aes(x = referencia, y = n_consumidores, colour = gru_tar))+
+       geom_line() +
+       geom_point() +
+       labs(title = "Evolução mensal do número de consumidores por grupo tarifário",
+            x = "Mês",
+            y = "Número de consumidores",
+            color = "Grupo Tarifário",) +
+       theme_minimal()
 
